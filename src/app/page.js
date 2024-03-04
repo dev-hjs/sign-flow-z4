@@ -39,7 +39,7 @@ export default function Home() {
 
   // 최종 데이터 제출
   const onSubmit = data => {
-    console.log(data); // 최종 데이터 콘솔에 출력
+    console.log(data); // 최종 데이터를 콘솔에 출력
   };
 
   return (
@@ -74,8 +74,8 @@ export default function Home() {
                 <label htmlFor="role" className="block text-sm font-medium text-gray-700">역할</label>
                 <select id="role" {...register("role")} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                   <option value="">역할 선택</option>
-                  <option value="User">User</option>
-                  <option value="Admin">Admin</option>
+                  <option value="User">사용자</option>
+                  <option value="Admin">관리자</option>
                 </select>
                 {errors.role && <p className="mt-1 text-sm text-red-600">역할을 선택해주세요</p>}
               </div>
