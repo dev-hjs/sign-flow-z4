@@ -31,9 +31,9 @@ export default function Home() {
 
   // 단계 1에서 다음 단계로 넘어가기 전에 유효성 검사 수행
   const handleNextStep = async () => {
-    const result = await trigger(); // 모든 필드에 대한 유효성 검사 수행
+    const result = await trigger(['name', 'email', 'contact', 'role']);
     if (result) {
-      setStep(2); // 유효성 검사를 통과하면 다음 단계로 이동
+      setStep(2);
     }
   };
 
@@ -51,7 +51,7 @@ export default function Home() {
             <p className="text-sm text-muted-foreground">필수 정보를 입력해보세요.</p>
           </div>
           {step === 1 && (
-            <form className="space-y-4">
+            <>
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-gray-700">이름</label>
                 <input id="name" type="text" {...register("name")} placeholder="홍길동" className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" />
@@ -80,11 +80,11 @@ export default function Home() {
                 {errors.role && <p className="mt-1 text-sm text-red-600">역할을 선택해주세요</p>}
               </div>
               <button type="button" onClick={handleNextStep} className="flex justify-center w-full rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">다음 단계로</button>
-            </form>
+            </>
           )}
 
           {step === 2 && (
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+            <div className="space-y-4">
               {/* 비밀번호 설정 폼 */}
               <div>
                 <label htmlFor="password" className="block text-sm font-medium text-gray-700">비밀번호</label>
@@ -99,7 +99,7 @@ export default function Home() {
               </div>
 
               <button type="submit" className="flex justify-center w-full rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">계정 등록하기</button>
-            </form>
+            </div>
           )}
 
           {step > 1 && (
